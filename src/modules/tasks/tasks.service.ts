@@ -29,7 +29,22 @@ export class TasksService {
   }
 
   findAll(id: number): Promise<Task[]> {
-    return this.tasksRepository.findBy({ user_id: id });
+    return this.tasksRepository.find({
+      where: { user_id: id },
+      relations: ['category'], // 关联 category 表
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        create_time: true,
+        finish_time: true,
+        status: true,
+        level: true,
+        category: {
+          category_name: true,
+        },
+      },
+    });
   }
 
   async findOne(id: number): Promise<Task | null> {

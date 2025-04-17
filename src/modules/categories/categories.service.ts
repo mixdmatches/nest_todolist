@@ -11,23 +11,19 @@ export class CategoriesService {
     private categoryRepository: Repository<Category>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  create(id: number, createCategoryDto: CreateCategoryDto) {
+    return this.categoryRepository.save({ user_id: id, ...createCategoryDto });
   }
 
   async findAll(id: number) {
     return await this.categoryRepository.findBy({ user_id: id });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
-  }
-
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+    return this.categoryRepository.update(id, updateCategoryDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} category`;
+    return this.categoryRepository.delete(id);
   }
 }

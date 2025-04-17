@@ -1,5 +1,11 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+} from 'typeorm';
+import { Category } from 'src/modules/categories/entities/category.entity';
 @Entity('task')
 export class Task {
   @PrimaryGeneratedColumn()
@@ -10,6 +16,10 @@ export class Task {
 
   @Column()
   category_id: number;
+
+  @ManyToOne(() => Category, (category: Category) => category.tasks)
+  @JoinColumn({ name: 'category_id' }) // 明确指定外键列名
+  category: Category;
 
   @Column()
   tag_id: number;

@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, OneToMany, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Task } from 'src/modules/tasks/entities/task.entity';
 @Entity('category')
 export class Category {
   @PrimaryGeneratedColumn() // 主键，自增的 numbe
@@ -10,4 +10,7 @@ export class Category {
 
   @Column()
   category_name: string;
+
+  @OneToMany(() => Task, (task) => task.category)
+  tasks: Task[];
 }

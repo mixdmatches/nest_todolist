@@ -1,3 +1,6 @@
+/**
+ * 定义了一个响应拦截器 ResponseInterceptor，用于统一接口返回的数据结构。所有接口的响应都会被包装成 { code, message, data, timestamp } 的格式，便于前端统一处理。
+ */
 import {
   Injectable,
   NestInterceptor,

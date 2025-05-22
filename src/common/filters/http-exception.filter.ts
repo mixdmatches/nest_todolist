@@ -1,3 +1,6 @@
+/**
+ * 定义了一个全局异常过滤器 HttpExceptionFilter，用于统一处理 HTTP 异常。当控制器抛出 HttpException 时，会被这个过滤器捕获，并返回统一格式的响应（包含 code、message、data、timestamp）。
+ */
 import {
   ExceptionFilter,
   Catch,

@@ -5,5 +5,17 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  }
+  },
+  "moduleNameMapper": {
+    "^src/(.*)$": "<rootDir>/../src/$1"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "../src/**/*.ts",
+    "!../src/main.ts",
+    "!../src/**/dto/*.ts",
+    "!../src/**/entities/*.ts"
+  ],
+  "coverageDirectory": "../coverage-e2e",
+  "coverageReporters": ["json", "lcov", "text", "clover"]
 }
